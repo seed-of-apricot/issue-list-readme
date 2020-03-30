@@ -19,5 +19,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: ./
-      with: 
-        milliseconds: 1000
+      with:
+        token: c325a261480f808bd0e36c9bc3042ff66135d86d
