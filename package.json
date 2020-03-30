@@ -40,11 +40,29 @@
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-prettier": "^3.1.2",
     "graphql-tag": "^2.10.3",
+    "husky": "^4.2.3",
     "jest": "^24.9.0",
     "jest-circus": "^24.9.0",
     "js-yaml": "^3.13.1",
+    "lint-staged": "^10.0.10",
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
     "typescript": "^3.6.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": [
+        "lint-staged"
+      ]
+    }
+  },
+  "lint-staged": {
+    "./**/*.{js,ts,jsx,tsx}": [
+      "eslint"
+    ],
+    "./**/*.{js,ts,jsx,tsx,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
