@@ -3,7 +3,7 @@ import getIssues from './github';
 
 async function run(): Promise<void> {
   try {
-    getIssues();
+    const issueList = await getIssues();
   } catch (error) {
     core.setFailed(error.message);
   }

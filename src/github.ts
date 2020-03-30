@@ -4,11 +4,15 @@ import * as core from '@actions/core';
 const getIssues = async () => {
   try {
     const token = core.getInput('token');
-    core.debug('repository');
+    const octokit = new github.GitHub(token);
+    console.log('octokit initialized');
 
     const repository = github.context.repo;
 
-    core.debug(repository.repo);
+    const list = await octokit.issues.listForRepo(repository);
+
+    console.log('issues found');
+    return list;
   } catch (error) {
     console.log(error);
     core.setFailed(error.message);
