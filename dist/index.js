@@ -9326,29 +9326,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const github_1 = __webpack_require__(469);
+const github = __importStar(__webpack_require__(469));
 const core = __importStar(__webpack_require__(470));
 const getIssues = () => __awaiter(void 0, void 0, void 0, function* () {
-    const token = core.getInput('token');
-    const octokit = new github_1.GitHub(token);
-    const { repository } = (yield octokit.graphql(`
-      {
-        repository(owner: "octokit", name: "graphql.js") {
-          issues(last: 3) {
-            edges {
-              node {
-                title
-              }
-            }
-          }
-        }
-      }
-    `, {
-        headers: {
-            authorization: `token secret123`
-        }
-    }));
-    console.log(repository);
+    try {
+        const token = core.getInput('token');
+        core.debug('repository');
+        const repository = github.context.repo;
+        core.debug(repository.repo);
+    }
+    catch (error) {
+        console.log(error);
+        core.setFailed(error.message);
+    }
 });
 exports.default = getIssues;
 
