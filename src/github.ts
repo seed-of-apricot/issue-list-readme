@@ -4,14 +4,14 @@ import * as core from '@actions/core';
 const getIssues = async () => {
   try {
     const token = core.getInput('token');
-    console.log('repository');
+    core.debug('repository');
 
     const repository = github.context.repo;
 
-    console.log(repository);
+    core.debug(repository.repo);
   } catch (error) {
     console.log(error);
-    core.setFailed(error);
+    core.setFailed(error.message);
   }
 };
 
