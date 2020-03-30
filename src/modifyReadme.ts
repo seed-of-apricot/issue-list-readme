@@ -20,15 +20,15 @@ const modifyReadme = async () => {
       0,
       firstIndex + pattern.length
     );
-    core.debug(beforeTable);
+    console.log(beforeTable);
 
     const afterTable = contents.readme.substring(
       contents.readme.lastIndexOf(pattern)
     );
-    core.debug(afterTable);
+    console.log(afterTable);
 
     const table = await createTableContents(contents.issues);
-    core.debug(table);
+    console.log(table);
 
     return beforeTable + table + afterTable;
   } catch (error) {
