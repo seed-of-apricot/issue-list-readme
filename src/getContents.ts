@@ -3,7 +3,7 @@ import * as core from '@actions/core';
 
 const getContents = async () => {
   try {
-    const token = core.getInput('token');
+    const token = core.getInput('GITHUB_TOKEN');
     const octokit = new github.GitHub(token);
     core.debug('octokit initialized');
 
