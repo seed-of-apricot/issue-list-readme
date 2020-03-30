@@ -10,6 +10,7 @@
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
     "pack": "ncc build",
+    "dev": "ncc build -w",
     "test": "jest",
     "all": "npm run build && npm run format && npm run lint && npm run pack && npm test"
   },
@@ -29,6 +30,7 @@
     "@actions/github": "^2.1.1"
   },
   "devDependencies": {
+    "@octokit/action": "^2.0.3",
     "@types/jest": "^24.0.23",
     "@types/node": "^12.7.12",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
@@ -45,6 +47,7 @@
     "jest-circus": "^24.9.0",
     "js-yaml": "^3.13.1",
     "lint-staged": "^10.0.10",
+    "markdown-table": "^2.0.0",
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
     "typescript": "^3.6.4"
