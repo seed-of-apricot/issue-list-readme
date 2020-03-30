@@ -9035,7 +9035,7 @@ const github = __importStar(__webpack_require__(469));
 const core = __importStar(__webpack_require__(470));
 const getContents = async () => {
     try {
-        const token = core.getInput('token');
+        const token = core.getInput('GITHUB_TOKEN');
         const octokit = new github.GitHub(token);
         core.debug('octokit initialized');
         const repository = github.context.repo;
