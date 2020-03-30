@@ -4,7 +4,7 @@ import * as core from '@actions/core';
 const getIssues = async () => {
   const token = core.getInput('token');
 
-  const repository = github.context.context.repo;
+  const repository = github.context.repo;
 
   console.log(repository);
 };
