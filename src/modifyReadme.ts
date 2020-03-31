@@ -7,8 +7,6 @@ const modifyReadme = async () => {
     const pattern = core.getInput('pattern');
     const contents = await getContents();
 
-    if (!contents) return;
-
     const firstIndex = contents.readme.indexOf(pattern);
     const lastIndex = contents.readme.lastIndexOf(pattern);
 
@@ -33,6 +31,7 @@ const modifyReadme = async () => {
     return beforeTable + table + afterTable;
   } catch (error) {
     core.setFailed(error.message);
+    throw error.message;
   }
 };
 

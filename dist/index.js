@@ -3392,15 +3392,30 @@ function paginatePlugin(octokit) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const markdown_table_1 = __importDefault(__webpack_require__(366));
+const core = __importStar(__webpack_require__(470));
 const createTableContents = async (issues) => {
-    const markDownText = markdown_table_1.default(issues.data.map((item) => ({
-        title: item.title,
-        status: item.state === 'open' ? ':heavy_check_mark:' : ':no_entry:',
-        assignee: item.assignees.map((assignee) => assignee.avatar_url)
-    })));
-    return markDownText;
+    try {
+        const markDownText = markdown_table_1.default(issues.data.map((item) => ({
+            title: item.title,
+            status: item.state === 'open' ? ':heavy_check_mark:' : ':no_entry:',
+            assignee: item.assignees.map((assignee) => assignee.avatar_url)
+        })));
+        console.log(markDownText);
+        return markDownText;
+    }
+    catch (error) {
+        core.setFailed(error.message);
+        throw error.message;
+    }
 };
 exports.default = createTableContents;
 
@@ -3612,6 +3627,7 @@ async function run() {
     }
     catch (error) {
         core.setFailed(error.message);
+        throw error.message;
     }
 }
 run();
@@ -9046,6 +9062,7 @@ const getContents = async () => {
     }
     catch (error) {
         core.setFailed(error.message);
+        throw error.message;
     }
 };
 exports.default = getContents;
@@ -25200,8 +25217,6 @@ const modifyReadme = async () => {
     try {
         const pattern = core.getInput('pattern');
         const contents = await getContents_1.default();
-        if (!contents)
-            return;
         const firstIndex = contents.readme.indexOf(pattern);
         const lastIndex = contents.readme.lastIndexOf(pattern);
         if (firstIndex === -1 || lastIndex === -1) {
@@ -25217,6 +25232,7 @@ const modifyReadme = async () => {
     }
     catch (error) {
         core.setFailed(error.message);
+        throw error.message;
     }
 };
 exports.default = modifyReadme;

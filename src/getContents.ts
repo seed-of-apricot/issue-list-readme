@@ -16,6 +16,7 @@ const getContents = async () => {
     return { issues: list, readme: readme.data.content };
   } catch (error) {
     core.setFailed(error.message);
+    throw error.message;
   }
 };
 

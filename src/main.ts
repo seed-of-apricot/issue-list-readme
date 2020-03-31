@@ -7,6 +7,7 @@ async function run(): Promise<void> {
     // await writeReadme(newReadme);
   } catch (error) {
     core.setFailed(error.message);
+    throw error.message;
   }
 }
 
