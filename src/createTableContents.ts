@@ -3,19 +3,18 @@ import * as core from '@actions/core';
 
 const createTableContents = async (issues: any) => {
   try {
-    const array = issues.map(
-      (item: { title: any; state: string; assignees: any[] }) => ({
-        title: item.title,
-        status: item.state === 'open' ? ':heavy_check_mark:' : ':no_entry:',
-        assignee: item.assignees.map(
-          (assignee: { avatar_url: any }) => assignee.avatar_url
-        )
-      })
-    );
-    console.log(array);
-    const markDownText: string = tablemark(array);
-
-    console.log(markDownText);
+    const array = issues.map((item: any) => ({
+      title: `<a href="${item.url}">${item.title}</a>`,
+      status: item.state === 'open' ? ':eight_spoked_asterisk:' : ':no_entry:',
+      assignee: item.assignees.map(
+        (assignee: { avatar_url: any }) =>
+          `<img src="${assignee.avatar_url}" width="24">`
+      )
+    }));
+    const markDownText: string = tablemark(array, {
+      wrap: { width: 40 },
+      columns: [{ align: 'left' }, { align: 'center' }, { align: 'center' }]
+    });
 
     return markDownText;
   } catch (error) {

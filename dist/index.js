@@ -3343,13 +3343,14 @@ const core = __importStar(__webpack_require__(470));
 const createTableContents = async (issues) => {
     try {
         const array = issues.map((item) => ({
-            title: item.title,
-            status: item.state === 'open' ? ':heavy_check_mark:' : ':no_entry:',
-            assignee: item.assignees.map((assignee) => assignee.avatar_url)
+            title: `<a href="${item.url}">${item.title}</a>`,
+            status: item.state === 'open' ? ':eight_spoked_asterisk:' : ':no_entry:',
+            assignee: item.assignees.map((assignee) => `<img src="${assignee.avatar_url}" width="24">`)
         }));
-        console.log(array);
-        const markDownText = tablemark_1.default(array);
-        console.log(markDownText);
+        const markDownText = tablemark_1.default(array, {
+            wrap: { width: 40 },
+            columns: [{ align: 'left' }, { align: 'center' }, { align: 'center' }]
+        });
         return markDownText;
     }
     catch (error) {
@@ -3564,7 +3565,6 @@ const fs_1 = __webpack_require__(747);
 async function run() {
     try {
         const newReadme = await modifyReadme_1.default();
-        console.log(newReadme);
         fs_1.writeFile('./README.md', newReadme, () => console.log('New file has been written.'));
     }
     catch (error) {
@@ -9140,11 +9140,9 @@ const getContents = async () => {
     try {
         const token = core.getInput('GITHUB_TOKEN');
         const octokit = new github.GitHub(token);
-        console.log('octokit initialized');
         const repository = github.context.repo;
         const list = await octokit.issues.listForRepo(repository);
         const readme = await octokit.repos.getReadme(repository);
-        console.log('issues found');
         return {
             issues: list.data,
             readme: Buffer.from(readme.data.content, 'base64').toString('UTF-8')
@@ -25396,19 +25394,15 @@ const modifyReadme = async () => {
     try {
         const pattern = core.getInput('pattern');
         const contents = await getContents_1.default();
-        console.log(contents);
         const firstIndex = contents.readme.indexOf(pattern);
         const lastIndex = contents.readme.lastIndexOf(pattern);
-        console.log(firstIndex, lastIndex);
         if (firstIndex === -1 || lastIndex === -1) {
+            core.setFailed('notValidIndexException');
             throw 'notValidIndexException';
         }
         const beforeTable = contents.readme.substring(0, firstIndex + pattern.length);
-        console.log(beforeTable);
         const afterTable = contents.readme.substring(contents.readme.lastIndexOf(pattern));
-        console.log(afterTable);
         const table = await createTableContents_1.default(contents.issues);
-        console.log(table);
         return beforeTable + '\n\n' + table + '\n' + afterTable;
     }
     catch (error) {

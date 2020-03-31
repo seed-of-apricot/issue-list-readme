@@ -5,7 +5,6 @@ import { writeFile } from 'fs';
 async function run(): Promise<void> {
   try {
     const newReadme = await modifyReadme();
-    console.log(newReadme);
     writeFile('./README.md', newReadme, () =>
       console.log('New file has been written.')
     );

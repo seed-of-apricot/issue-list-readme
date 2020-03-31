@@ -7,14 +7,11 @@ const modifyReadme = async () => {
     const pattern = core.getInput('pattern');
     const contents = await getContents();
 
-    console.log(contents);
-
     const firstIndex = contents.readme.indexOf(pattern);
     const lastIndex = contents.readme.lastIndexOf(pattern);
 
-    console.log(firstIndex, lastIndex);
-
     if (firstIndex === -1 || lastIndex === -1) {
+      core.setFailed('notValidIndexException');
       throw 'notValidIndexException';
     }
 
@@ -22,15 +19,12 @@ const modifyReadme = async () => {
       0,
       firstIndex + pattern.length
     );
-    console.log(beforeTable);
 
     const afterTable = contents.readme.substring(
       contents.readme.lastIndexOf(pattern)
     );
-    console.log(afterTable);
 
     const table = await createTableContents(contents.issues);
-    console.log(table);
 
     return beforeTable + '\n\n' + table + '\n' + afterTable;
   } catch (error) {
