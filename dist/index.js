@@ -3405,7 +3405,7 @@ const core = __importStar(__webpack_require__(470));
 const createTableContents = async (issues) => {
     try {
         console.log(issues);
-        const markDownText = markdown_table_1.default(issues.data.map((item) => ({
+        const markDownText = markdown_table_1.default(issues.map((item) => ({
             title: item.title,
             status: item.state === 'open' ? ':heavy_check_mark:' : ':no_entry:',
             assignee: item.assignees.map((assignee) => assignee.avatar_url)
