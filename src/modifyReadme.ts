@@ -32,7 +32,7 @@ const modifyReadme = async () => {
     const table = await createTableContents(contents.issues);
     console.log(table);
 
-    return beforeTable + table + afterTable;
+    return beforeTable + '\n\n' + table + '\n' + afterTable;
   } catch (error) {
     core.setFailed(error.message);
     throw error.message;

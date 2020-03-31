@@ -22,7 +22,7 @@ jobs:
         with:
           message: README.md has been re-written
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: push
         uses: ad-m/github-push-action@master
         with:

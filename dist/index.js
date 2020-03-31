@@ -3565,7 +3565,7 @@ async function run() {
     try {
         const newReadme = await modifyReadme_1.default();
         console.log(newReadme);
-        fs_1.writeFile('../README.md', newReadme, () => console.log('New file has been written.'));
+        fs_1.writeFile('./README.md', newReadme, () => console.log('New file has been written.'));
     }
     catch (error) {
         core.setFailed(error.message);
@@ -25409,7 +25409,7 @@ const modifyReadme = async () => {
         console.log(afterTable);
         const table = await createTableContents_1.default(contents.issues);
         console.log(table);
-        return beforeTable + table + afterTable;
+        return beforeTable + '\n\n' + table + '\n' + afterTable;
     }
     catch (error) {
         core.setFailed(error.message);
