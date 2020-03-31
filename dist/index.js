@@ -3404,6 +3404,7 @@ const markdown_table_1 = __importDefault(__webpack_require__(366));
 const core = __importStar(__webpack_require__(470));
 const createTableContents = async (issues) => {
     try {
+        console.log(issues);
         const markDownText = markdown_table_1.default(issues.data.map((item) => ({
             title: item.title,
             status: item.state === 'open' ? ':heavy_check_mark:' : ':no_entry:',
@@ -9058,7 +9059,7 @@ const getContents = async () => {
         const readme = await octokit.repos.getReadme(repository);
         console.log('issues found');
         return {
-            issues: list,
+            issues: list.data,
             readme: new Buffer(readme.data.content, 'base64').toString('UTF-8')
         };
     }

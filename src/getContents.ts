@@ -14,7 +14,7 @@ const getContents = async () => {
 
     console.log('issues found');
     return {
-      issues: list,
+      issues: list.data,
       readme: new Buffer(readme.data.content, 'base64').toString('UTF-8')
     };
   } catch (error) {

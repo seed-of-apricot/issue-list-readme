@@ -3,6 +3,7 @@ import * as core from '@actions/core';
 
 const createTableContents = async (issues: any) => {
   try {
+    console.log(issues);
     const markDownText: string = table(
       issues.data.map(
         (item: { title: any; state: string; assignees: any[] }) => ({
