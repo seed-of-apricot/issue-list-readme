@@ -5,10 +5,12 @@ const createTableContents = async (issues: any) => {
   try {
     const array = issues.map((item: any) => ({
       title: `<a href="${item.url}">${item.title}</a>`,
-      status: item.state === 'open' ? ':eight_spoked_asterisk:' : ':no_entry:',
+      status: `<div style="margin-top: -0.375rem">${
+        item.state === 'open' ? '✳' : ':no_entry:'
+      }</div>`,
       assignee: item.assignees.map(
-        (assignee: { avatar_url: any }) =>
-          `<img src="${assignee.avatar_url}" width="24">`
+        (assignee: any) =>
+          `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="24" style="margin-bottom: -0.25rem"></a>`
       )
     }));
     const markDownText: string = tablemark(array, {

@@ -3344,8 +3344,8 @@ const createTableContents = async (issues) => {
     try {
         const array = issues.map((item) => ({
             title: `<a href="${item.url}">${item.title}</a>`,
-            status: item.state === 'open' ? ':eight_spoked_asterisk:' : ':no_entry:',
-            assignee: item.assignees.map((assignee) => `<img src="${assignee.avatar_url}" width="24">`)
+            status: `<div style="margin-top: -0.375rem">${item.state === 'open' ? '✳' : ':no_entry:'}</div>`,
+            assignee: item.assignees.map((assignee) => `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="24" style="margin-bottom: -0.25rem"></a>`)
         }));
         const markDownText = tablemark_1.default(array, {
             columns: [{ align: 'left' }, { align: 'center' }, { align: 'center' }]
