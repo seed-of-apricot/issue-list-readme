@@ -12,7 +12,6 @@ const createTableContents = async (issues: any) => {
       )
     }));
     const markDownText: string = tablemark(array, {
-      wrap: { width: 40 },
       columns: [{ align: 'left' }, { align: 'center' }, { align: 'center' }]
     });
 

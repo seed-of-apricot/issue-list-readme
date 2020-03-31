@@ -3348,7 +3348,6 @@ const createTableContents = async (issues) => {
             assignee: item.assignees.map((assignee) => `<img src="${assignee.avatar_url}" width="24">`)
         }));
         const markDownText = tablemark_1.default(array, {
-            wrap: { width: 40 },
             columns: [{ align: 'left' }, { align: 'center' }, { align: 'center' }]
         });
         return markDownText;
