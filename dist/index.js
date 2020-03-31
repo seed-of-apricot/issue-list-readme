@@ -3560,10 +3560,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const modifyReadme_1 = __importDefault(__webpack_require__(938));
+const fs_1 = __webpack_require__(747);
 async function run() {
     try {
         const newReadme = await modifyReadme_1.default();
-        // await writeReadme(newReadme);
+        fs_1.writeFile('../README.md', newReadme, () => console.log('New file has been written.'));
     }
     catch (error) {
         core.setFailed(error.message);

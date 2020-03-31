@@ -1,14 +1,14 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: "issue-list-readme"
+description: "Create issue list in README."
+author: "seed-of^apricot <seed.of.apricot@dev.chronolapselibrary.net>"
 inputs:
   GITHUB_TOKEN:
-    description: 'token'
+    description: "token"
     required: true
   pattern:
-    description: 'pattern to detect the place to locate the table'
+    description: "pattern to detect the place to locate the table"
     required: false
-    default: '<!-- issueTable -->'
+    default: "<!-- issueTable -->"
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "node12"
+  main: "dist/index.js"
