@@ -17,12 +17,18 @@ jobs:
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           pattern: "<!-- issueTable -->"
+      - name: Commit files
+        run: |
+          git status
       - name: add-and-commit
         uses: EndBug/add-and-commit@v4
         with:
           message: README.md has been re-written
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit files2
+        run: |
+          git status
       - name: push
         uses: ad-m/github-push-action@master
         with:
