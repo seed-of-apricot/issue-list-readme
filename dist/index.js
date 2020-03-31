@@ -3627,7 +3627,6 @@ async function run() {
     }
     catch (error) {
         core.setFailed(error.message);
-        throw error.message;
     }
 }
 run();
@@ -25217,8 +25216,10 @@ const modifyReadme = async () => {
     try {
         const pattern = core.getInput('pattern');
         const contents = await getContents_1.default();
+        console.log(contents);
         const firstIndex = contents.readme.indexOf(pattern);
         const lastIndex = contents.readme.lastIndexOf(pattern);
+        console.log(firstIndex, lastIndex);
         if (firstIndex === -1 || lastIndex === -1) {
             throw 'notValidIndexException';
         }

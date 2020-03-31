@@ -7,8 +7,12 @@ const modifyReadme = async () => {
     const pattern = core.getInput('pattern');
     const contents = await getContents();
 
+    console.log(contents);
+
     const firstIndex = contents.readme.indexOf(pattern);
     const lastIndex = contents.readme.lastIndexOf(pattern);
+
+    console.log(firstIndex, lastIndex);
 
     if (firstIndex === -1 || lastIndex === -1) {
       throw 'notValidIndexException';
