@@ -9057,7 +9057,10 @@ const getContents = async () => {
         const list = await octokit.issues.listForRepo(repository);
         const readme = await octokit.repos.getReadme(repository);
         console.log('issues found');
-        return { issues: list, readme: readme.data.content };
+        return {
+            issues: list,
+            readme: new Buffer(readme.data.content, 'base64').toString('UTF-8')
+        };
     }
     catch (error) {
         core.setFailed(error.message);
