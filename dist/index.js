@@ -3564,6 +3564,7 @@ const fs_1 = __webpack_require__(747);
 async function run() {
     try {
         const newReadme = await modifyReadme_1.default();
+        console.log(newReadme);
         fs_1.writeFile('../README.md', newReadme, () => console.log('New file has been written.'));
     }
     catch (error) {

@@ -17,10 +17,12 @@ jobs:
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           pattern: "<!-- issueTable -->"
-      - name: commit
-        uses: stefanzweifel/git-auto-commit-action@v4.1.1
+      - name: add-and-commit
+        uses: EndBug/add-and-commit@v4
         with:
-          commit_message: README.md has been re-written
+          message: README.md has been re-written
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
       - name: push
         uses: ad-m/github-push-action@master
         with:
