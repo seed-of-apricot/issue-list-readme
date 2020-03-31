@@ -1,2 +1,1 @@
-declare module '*.md';
-declare module 'markdown-table';
+declare module 'tablemark';

@@ -47,8 +47,8 @@
     "jest-circus": "^24.9.0",
     "js-yaml": "^3.13.1",
     "lint-staged": "^10.0.10",
-    "markdown-table": "^2.0.0",
     "prettier": "^1.19.1",
+    "tablemark": "^2.0.0",
     "ts-jest": "^24.2.0",
     "typescript": "^3.6.4"
   },
