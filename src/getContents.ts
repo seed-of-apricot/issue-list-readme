@@ -11,8 +11,6 @@ const getContents = async () => {
 
     const repository = github.context.repo;
 
-    console.log(labels);
-
     const list = await octokit.issues.listForRepo({
       ...repository,
       state: 'all',

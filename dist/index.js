@@ -4389,14 +4389,11 @@ const extractBody = async (text) => {
     else {
         extracted = text.substring(firstIndex + 1, lastIndex - 1);
     }
-    console.log([extracted]);
     const strArray = extracted.split('\r\n');
-    console.log(strArray);
     const newText = strArray
         .slice(0, 3)
         .map(item => item.replace('\n', '').replace('\r', ''))
         .join('<br />');
-    console.log([newText]);
     return strArray.length > 3 ? newText + '<br />...' : newText;
 };
 exports.default = extractBody;
@@ -9193,7 +9190,6 @@ const getContents = async () => {
         const octokit = new github.GitHub(token);
         console.log('GitHub client has been initialized.');
         const repository = github.context.repo;
-        console.log(labels);
         const list = await octokit.issues.listForRepo({
             ...repository,
             state: 'all',
