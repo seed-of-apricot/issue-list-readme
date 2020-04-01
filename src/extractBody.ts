@@ -10,11 +10,17 @@ const extractBody = async (text: string) => {
     return text;
   }
 
+  console.log(text);
+
   const extracted = text
     .substring(firstIndex + 1, lastIndex - 1)
     .split('/\r?\n/');
 
+  console.log(extracted);
+
   const strArray = extracted.slice(0, 3).join('<br />');
+
+  console.log(strArray);
 
   return extracted.length > 3 ? strArray + '<br />...' : strArray;
 };
