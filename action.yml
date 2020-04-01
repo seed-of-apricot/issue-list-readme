@@ -9,6 +9,9 @@ inputs:
     description: "pattern to detect the place to locate the table"
     required: false
     default: "<!-- issueTable -->"
+  labels:
+    description: "labels to filter the issues"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"

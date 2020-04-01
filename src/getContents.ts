@@ -4,11 +4,20 @@ import * as core from '@actions/core';
 const getContents = async () => {
   try {
     const token = core.getInput('GITHUB_TOKEN');
+    const labels = core.getInput('labels');
     const octokit = new github.GitHub(token);
+
+    console.log('GitHub client has been initialized.');
 
     const repository = github.context.repo;
 
-    const list = await octokit.issues.listForRepo(repository);
+    console.log(labels);
+
+    const list = await octokit.issues.listForRepo({
+      ...repository,
+      state: 'all',
+      labels
+    });
     const readme = await octokit.repos.getReadme(repository);
 
     return {

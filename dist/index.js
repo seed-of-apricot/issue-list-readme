@@ -3340,12 +3340,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const tablemark_1 = __importDefault(__webpack_require__(611));
 const core = __importStar(__webpack_require__(470));
+const extractBody_1 = __importDefault(__webpack_require__(312));
 const createTableContents = async (issues) => {
     try {
-        const array = issues.map((item) => ({
-            title: `<a href="${item.url}">${item.title}</a>`,
-            status: `<div style="margin-top: -0.375rem">${item.state === 'open' ? '✳' : ':no_entry:'}</div>`,
-            assignee: item.assignees.map((assignee) => `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="24" style="margin-bottom: -0.25rem"></a>`)
+        const array = issues.map(async (item) => ({
+            title: `<a href="${item.html_url}">${item.title}</a>`,
+            status: item.state === 'open' ? ':eight_spoked_asterisk:' : ':no_entry:',
+            assignee: item.assignees.map((assignee) => `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="20"></a>`),
+            body: await extractBody_1.default(item.body)
         }));
         const markDownText = tablemark_1.default(array, {
             columns: [{ align: 'left' }, { align: 'center' }, { align: 'center' }]
@@ -3563,6 +3565,7 @@ const modifyReadme_1 = __importDefault(__webpack_require__(938));
 const fs_1 = __webpack_require__(747);
 async function run() {
     try {
+        console.log('Initializing.');
         const newReadme = await modifyReadme_1.default();
         fs_1.writeFile('./README.md', newReadme, () => console.log('New file has been written.'));
     }
@@ -4349,6 +4352,38 @@ paginateRest.VERSION = VERSION;
 
 exports.paginateRest = paginateRest;
 //# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
+/***/ 312:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const core = __importStar(__webpack_require__(470));
+const getIndices_1 = __importDefault(__webpack_require__(951));
+const extractBody = async (text) => {
+    const pattern = core.getInput('pattern');
+    const [firstIndex, lastIndex] = await getIndices_1.default(text, pattern);
+    if (firstIndex === -1 || lastIndex === -1) {
+        console.log('No pattern matches. Returning the entire body.');
+        return text;
+    }
+    return text.substring(firstIndex + 1, lastIndex - 1);
+};
+exports.default = extractBody;
 
 
 /***/ }),
@@ -9138,9 +9173,16 @@ const core = __importStar(__webpack_require__(470));
 const getContents = async () => {
     try {
         const token = core.getInput('GITHUB_TOKEN');
+        const labels = core.getInput('labels');
         const octokit = new github.GitHub(token);
+        console.log('GitHub client has been initialized.');
         const repository = github.context.repo;
-        const list = await octokit.issues.listForRepo(repository);
+        console.log(labels);
+        const list = await octokit.issues.listForRepo({
+            ...repository,
+            state: 'all',
+            labels
+        });
         const readme = await octokit.repos.getReadme(repository);
         return {
             issues: list.data,
@@ -25389,19 +25431,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const createTableContents_1 = __importDefault(__webpack_require__(152));
 const getContents_1 = __importDefault(__webpack_require__(683));
+const getIndices_1 = __importDefault(__webpack_require__(951));
 const modifyReadme = async () => {
     try {
         const pattern = core.getInput('pattern');
         const contents = await getContents_1.default();
-        const firstIndex = contents.readme.indexOf(pattern);
-        const lastIndex = contents.readme.lastIndexOf(pattern);
+        console.log('Contents has been retrieved.');
+        const [firstIndex, lastIndex] = await getIndices_1.default(contents.readme, pattern);
         if (firstIndex === -1 || lastIndex === -1) {
             core.setFailed('notValidIndexException');
             throw 'notValidIndexException';
         }
-        const beforeTable = contents.readme.substring(0, firstIndex + pattern.length);
-        const afterTable = contents.readme.substring(contents.readme.lastIndexOf(pattern));
+        const beforeTable = contents.readme.substring(0, firstIndex);
+        const afterTable = contents.readme.substring(lastIndex);
+        console.log('Table wrapper has been identified.');
         const table = await createTableContents_1.default(contents.issues);
+        console.log('Table has been created.');
         return beforeTable + '\n\n' + table + '\n' + afterTable;
     }
     catch (error) {
@@ -25494,6 +25539,22 @@ function checkBypass(reqUrl) {
     return false;
 }
 exports.checkBypass = checkBypass;
+
+
+/***/ }),
+
+/***/ 951:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const getIndices = async (text, pattern) => {
+    const firstIndex = text.indexOf(pattern);
+    const lastIndex = text.lastIndexOf(pattern);
+    return [firstIndex + pattern.length, lastIndex];
+};
+exports.default = getIndices;
 
 
 /***/ }),
