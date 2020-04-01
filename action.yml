@@ -10,7 +10,7 @@ inputs:
     required: false
     default: "<!-- issueTable -->"
   labels:
-    description: "labels to filter the issues"
+    description: "comma-separated labels to filter the issues"
     required: false
 runs:
   using: "node12"

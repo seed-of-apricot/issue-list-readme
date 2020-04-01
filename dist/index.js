@@ -3346,7 +3346,7 @@ const createTableContents = async (issues) => {
         const array = issues.map(async (item) => ({
             title: `<a href="${item.html_url}">${item.title}</a>`,
             status: item.state === 'open' ? ':eight_spoked_asterisk:' : ':no_entry:',
-            assignee: item.assignees.map((assignee) => `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="20"></a>`),
+            assignee: item.assignees.map((assignee) => `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="20" /></a>`),
             body: await extractBody_1.default(item.body)
         }));
         const markDownText = tablemark_1.default(await Promise.all(array), {
@@ -4386,7 +4386,11 @@ const extractBody = async (text) => {
         console.log('No pattern matches. Returning the entire body.');
         return text;
     }
-    return text.substring(firstIndex + 1, lastIndex - 1);
+    const extracted = text
+        .substring(firstIndex + 1, lastIndex - 1)
+        .split('/\r?\n/');
+    const strArray = extracted.slice(0, 3).join('<br />');
+    return extracted.length > 3 ? strArray + '<br />...' : strArray;
 };
 exports.default = extractBody;
 

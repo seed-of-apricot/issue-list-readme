@@ -9,7 +9,7 @@ const createTableContents = async (issues: any[]) => {
       status: item.state === 'open' ? ':eight_spoked_asterisk:' : ':no_entry:',
       assignee: item.assignees.map(
         (assignee: any) =>
-          `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="20"></a>`
+          `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="20" /></a>`
       ),
       body: await extractBody(item.body)
     }));
