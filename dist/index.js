@@ -4380,20 +4380,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const getIndices_1 = __importDefault(__webpack_require__(951));
 const extractBody = async (text) => {
+    let extracted;
     const pattern = core.getInput('pattern');
     const [firstIndex, lastIndex] = await getIndices_1.default(text, pattern);
     if (firstIndex === -1 || lastIndex === -1) {
-        console.log('No pattern matches. Returning the entire body.');
-        return text;
+        extracted = text;
     }
-    console.log(text);
-    const extracted = text
-        .substring(firstIndex + 1, lastIndex - 1)
+    else {
+        extracted = text.substring(firstIndex + 1, lastIndex - 1);
+    }
+    const strArray = extracted
+        .replace('/^\n/', '')
+        .replace('/\r$/', '')
         .split('/\r?\n/');
-    console.log(extracted);
-    const strArray = extracted.slice(0, 3).join('<br />');
     console.log(strArray);
-    return extracted.length > 3 ? strArray + '<br />...' : strArray;
+    const newText = strArray.slice(0, 3).join('<br />');
+    console.log(newText);
+    return extracted.length > 3 ? newText + '<br />...' : newText;
 };
 exports.default = extractBody;
 

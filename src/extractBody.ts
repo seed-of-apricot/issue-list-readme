@@ -2,27 +2,28 @@ import * as core from '@actions/core';
 import getIndices from './getIndices';
 
 const extractBody = async (text: string) => {
+  let extracted;
   const pattern = core.getInput('pattern');
   const [firstIndex, lastIndex] = await getIndices(text, pattern);
 
   if (firstIndex === -1 || lastIndex === -1) {
-    console.log('No pattern matches. Returning the entire body.');
-    return text;
+    extracted = text;
+  } else {
+    extracted = text.substring(firstIndex + 1, lastIndex - 1);
   }
 
-  console.log(text);
-
-  const extracted = text
-    .substring(firstIndex + 1, lastIndex - 1)
+  const strArray = extracted
+    .replace('/^\n/', '')
+    .replace('/\r$/', '')
     .split('/\r?\n/');
-
-  console.log(extracted);
-
-  const strArray = extracted.slice(0, 3).join('<br />');
 
   console.log(strArray);
 
-  return extracted.length > 3 ? strArray + '<br />...' : strArray;
+  const newText = strArray.slice(0, 3).join('<br />');
+
+  console.log(newText);
+
+  return extracted.length > 3 ? newText + '<br />...' : newText;
 };
 
 export default extractBody;
