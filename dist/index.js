@@ -3350,7 +3350,12 @@ const createTableContents = async (issues) => {
             body: await extractBody_1.default(item.body)
         }));
         const markDownText = tablemark_1.default(array, {
-            columns: [{ align: 'left' }, { align: 'center' }, { align: 'center' }]
+            columns: [
+                { align: 'left' },
+                { align: 'center' },
+                { align: 'center' },
+                { align: 'left' }
+            ]
         });
         return markDownText;
     }

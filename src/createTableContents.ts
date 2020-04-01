@@ -14,7 +14,12 @@ const createTableContents = async (issues: any) => {
       body: await extractBody(item.body)
     }));
     const markDownText: string = tablemark(array, {
-      columns: [{ align: 'left' }, { align: 'center' }, { align: 'center' }]
+      columns: [
+        { align: 'left' },
+        { align: 'center' },
+        { align: 'center' },
+        { align: 'left' }
+      ]
     });
 
     return markDownText;
