@@ -1,6 +1,6 @@
-# issue-list-readme
+# Auto Issue List in README
 
-Display the issues on the landing page :eyes:
+Display issues on the landing page :eyes:
 
 ## Demo
 
