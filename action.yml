@@ -1,8 +1,9 @@
-name: "issue-list-readme"
-description: "Create issue list in README."
-author: "seed-of^apricot <seed.of.apricot@dev.chronolapselibrary.net>"
-icon: check-circle
-color: orange
+name: "Auto Issue List in README"
+description: "Create issue list in README.md"
+author: "seed-of-apricot <seed.of.apricot@dev.chronolapselibrary.net>"
+branding:
+  icon: check-circle
+  color: orange
 inputs:
   GITHUB_TOKEN:
     description: "token"
