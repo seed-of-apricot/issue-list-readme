@@ -4389,10 +4389,11 @@ const extractBody = async (text) => {
     else {
         extracted = text.substring(firstIndex + 1, lastIndex - 1);
     }
+    console.log(extracted);
     const strArray = extracted
-        .replace('/^\n/', '')
-        .replace('/\r$/', '')
-        .split('/\r?\n/');
+        .replace('/^\n/g', '')
+        .replace('/\r$/g', '')
+        .split('/\\r?\\n/');
     console.log(strArray);
     const newText = strArray.slice(0, 3).join('<br />');
     console.log(newText);
