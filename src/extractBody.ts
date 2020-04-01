@@ -12,20 +12,20 @@ const extractBody = async (text: string) => {
     extracted = text.substring(firstIndex + 1, lastIndex - 1);
   }
 
-  console.log(extracted);
+  console.log([extracted]);
 
-  const strArray = extracted
-    .replace('/^\n/g', '')
-    .replace('/\r$/g', '')
-    .split('/\\r?\\n/');
+  const strArray = extracted.split('\r\n');
 
   console.log(strArray);
 
-  const newText = strArray.slice(0, 3).join('<br />');
+  const newText = strArray
+    .slice(0, 3)
+    .map(item => item.replace('\n', '').replace('\r', ''))
+    .join('<br />');
 
-  console.log(newText);
+  console.log([newText]);
 
-  return extracted.length > 3 ? newText + '<br />...' : newText;
+  return strArray.length > 3 ? newText + '<br />...' : newText;
 };
 
 export default extractBody;
