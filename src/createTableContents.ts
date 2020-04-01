@@ -2,7 +2,7 @@ import tablemark from 'tablemark';
 import * as core from '@actions/core';
 import extractBody from './extractBody';
 
-const createTableContents = async (issues: any) => {
+const createTableContents = async (issues: any[]) => {
   try {
     const array = issues.map(async (item: any) => ({
       title: `<a href="${item.html_url}">${item.title}</a>`,
@@ -13,7 +13,8 @@ const createTableContents = async (issues: any) => {
       ),
       body: await extractBody(item.body)
     }));
-    const markDownText: string = tablemark(array, {
+
+    const markDownText: string = tablemark(await Promise.all(array), {
       columns: [
         { align: 'left' },
         { align: 'center' },

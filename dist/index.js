@@ -3349,7 +3349,7 @@ const createTableContents = async (issues) => {
             assignee: item.assignees.map((assignee) => `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="20"></a>`),
             body: await extractBody_1.default(item.body)
         }));
-        const markDownText = tablemark_1.default(array, {
+        const markDownText = tablemark_1.default(await Promise.all(array), {
             columns: [
                 { align: 'left' },
                 { align: 'center' },
