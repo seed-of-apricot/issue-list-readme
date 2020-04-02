@@ -1,6 +1,7 @@
 name: "reqriteReadme"
 on:
-  push:
+  issues:
+    types: [labeled, unlabeled]
 
 jobs:
   test:

@@ -1,6 +1,6 @@
-# issue-list-readme
+# Auto Issue List in README
 
-Display the issues on the landing page :eyes:
+Display issues on the landing page :eyes:
 
 ## Demo
 
@@ -8,15 +8,10 @@ The issue list below...
 
 <!-- issueTableDemo -->
 
-| Title                                                                             |         Status          |                                                            Assignee                                                             | Body           |
-| :-------------------------------------------------------------------------------- | :---------------------: | :-----------------------------------------------------------------------------------------------------------------------------: | :------------- |
-| <a href="https://github.com/seed-of-apricot/issue-list-readme/issues/3">test2</a> |       :no_entry:        | <a href="https://github.com/seed-of-apricot"><img src="https://avatars1.githubusercontent.com/u/26666870?v=4" width="20" /></a> |                |
-                                                                                                                                                                                                                                                  test           
-                                                                                                                                                                                                                                                  hoge<br />...  
-| <a href="https://github.com/seed-of-apricot/issue-list-readme/issues/2">test</a>  | :eight_spoked_asterisk: | <a href="https://github.com/seed-of-apricot"><img src="https://avatars1.githubusercontent.com/u/26666870?v=4" width="20" /></a> | test          |
-                                                                                                                                                                                                                                                  hoge           
-                                                                                                                                                                                                                                                  testtest       
-                                                                                                                                                                                                                                                  yay<br />...    
+| Title                                                                             |         Status          |                                                            Assignee                                                             | Body                                  |
+| :-------------------------------------------------------------------------------- | :---------------------: | :-----------------------------------------------------------------------------------------------------------------------------: | :------------------------------------ |
+| <a href="https://github.com/seed-of-apricot/issue-list-readme/issues/3">test2</a> |       :no_entry:        | <a href="https://github.com/seed-of-apricot"><img src="https://avatars1.githubusercontent.com/u/26666870?v=4" width="20" /></a> | test<br />hoge                        |
+| <a href="https://github.com/seed-of-apricot/issue-list-readme/issues/2">test</a>  | :eight_spoked_asterisk: | <a href="https://github.com/seed-of-apricot"><img src="https://avatars1.githubusercontent.com/u/26666870?v=4" width="20" /></a> | test<br />hoge<br />testtest<br />... |
 
 <!-- issueTableDemo -->
 
@@ -28,7 +23,7 @@ steps:
   - name: checkout
     uses: actions/checkout@v2
   - name: rewriteReadme
-    uses: seed-of-apricot/issue-list-readme@v1
+    uses: seed-of-apricot/issue-list-readme@v1.0.0
     with:
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       pattern: '<!-- issueTable -->' # suffixing "Demo" for this readme
@@ -77,7 +72,7 @@ Some issue
 3. Then, write the following section into your action.
 
 ```yml
-uses: seed-of-apricot/issue-list-readme@v1
+uses: seed-of-apricot/issue-list-readme@v1.0.0
 with:
   GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 ```
