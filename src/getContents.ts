@@ -18,6 +18,7 @@ const getContents = async () => {
       labels
     });
     const readme = readFileSync('./README.md', 'utf8');
+    console.log(readme);
 
     return {
       issues: list.data,
