@@ -1,4 +1,4 @@
-name: "reqriteReadme"
+name: "rewriteReadme"
 on:
   issues:
     types: [labeled, unlabeled]
