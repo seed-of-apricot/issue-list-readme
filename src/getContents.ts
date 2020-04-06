@@ -1,5 +1,6 @@
 import * as github from '@actions/github';
 import * as core from '@actions/core';
+import { readFileSync } from 'fs';
 
 const getContents = async () => {
   try {
@@ -16,11 +17,13 @@ const getContents = async () => {
       state: 'all',
       labels
     });
-    const readme = await octokit.repos.getReadme(repository);
+    const readme = readFileSync('test.md', 'utf8');
+
+    console.log(readme);
 
     return {
       issues: list.data,
-      readme: Buffer.from(readme.data.content, 'base64').toString('UTF-8')
+      readme: readme
     };
   } catch (error) {
     core.setFailed(error.message);
