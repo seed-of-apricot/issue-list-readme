@@ -17,7 +17,7 @@ const getContents = async () => {
       state: 'all',
       labels
     });
-    const readme = readFileSync('./README.md', 'utf8');
+    const readme = readFileSync('../README.md');
     console.log(readme);
 
     return {
