@@ -1,6 +1,6 @@
 import * as github from '@actions/github';
 import * as core from '@actions/core';
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 
 const getContents = async () => {
   try {
@@ -18,7 +18,10 @@ const getContents = async () => {
       labels
     });
     const readme = readFileSync('../README.md');
-    console.log(readme);
+    const arrayOfFiles = readdirSync('../');
+    console.log(arrayOfFiles);
+    const arrayOfFiles2 = readdirSync('./');
+    console.log(arrayOfFiles2);
 
     return {
       issues: list.data,
