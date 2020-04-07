@@ -1,4 +1,4 @@
-name: 'rewriteReadme'
+name: "rewriteReadme"
 on:
   issues:
     types: [labeled, unlabeled]
@@ -12,15 +12,9 @@ jobs:
       - name: rewriteReadme
         uses: seed-of-apricot/issue-list-readme@master
         with:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          pattern: '<!-- issueTableDemo -->'
-          labels: 'good first issue'
-      - name: rewriteReadme
-        uses: seed-of-apricot/issue-list-readme@master
-        with:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          pattern: '<!-- issueTableDemo2 -->'
-          labels: 'documentation'
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          pattern: "<!-- issueTableDemo -->"
+          labels: "good first issue"
       - name: add-and-commit
         uses: EndBug/add-and-commit@v4
         with:
