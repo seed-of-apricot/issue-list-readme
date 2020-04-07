@@ -10,13 +10,13 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: rewriteReadme
-        uses: ./
+        uses: seed-of-apricot/issue-list-readme@master
         with:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           pattern: '<!-- issueTableDemo -->'
           labels: 'good first issue'
       - name: rewriteReadme
-        uses: ./
+        uses: seed-of-apricot/issue-list-readme@master
         with:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           pattern: '<!-- issueTableDemo2 -->'
