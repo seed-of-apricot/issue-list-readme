@@ -9183,6 +9183,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const github = __importStar(__webpack_require__(469));
 const core = __importStar(__webpack_require__(470));
+const fs_1 = __webpack_require__(747);
 const getContents = async () => {
     try {
         const token = core.getInput('GITHUB_TOKEN');
@@ -9195,10 +9196,11 @@ const getContents = async () => {
             state: 'all',
             labels
         });
-        const readme = await octokit.repos.getReadme(repository);
+        const readme = fs_1.readFileSync('./README.md');
+        console.log(readme);
         return {
             issues: list.data,
-            readme: Buffer.from(readme.data.content, 'base64').toString('UTF-8')
+            readme: readme.toString()
         };
     }
     catch (error) {
