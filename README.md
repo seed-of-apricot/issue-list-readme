@@ -1,3 +1,5 @@
+![rewriteReadme](https://github.com/seed-of-apricot/issue-list-readme/workflows/rewriteReadme/badge.svg)
+
 # Auto Issue List in README
 
 Display issues on the landing page :eyes:
