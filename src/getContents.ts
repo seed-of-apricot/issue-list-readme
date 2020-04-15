@@ -6,6 +6,7 @@ const getContents = async () => {
   try {
     const token = core.getInput('GITHUB_TOKEN');
     const labels = core.getInput('labels');
+    const state = core.getInput('state') as 'open' | 'closed' | 'all';
     const octokit = new github.GitHub(token);
 
     console.log('GitHub client has been initialized.');
@@ -14,7 +15,7 @@ const getContents = async () => {
 
     const list = await octokit.issues.listForRepo({
       ...repository,
-      state: 'all',
+      state,
       labels
     });
     const readme = readFileSync('./README.md');

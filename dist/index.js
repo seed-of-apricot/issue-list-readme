@@ -9188,12 +9188,13 @@ const getContents = async () => {
     try {
         const token = core.getInput('GITHUB_TOKEN');
         const labels = core.getInput('labels');
+        const state = core.getInput('state');
         const octokit = new github.GitHub(token);
         console.log('GitHub client has been initialized.');
         const repository = github.context.repo;
         const list = await octokit.issues.listForRepo({
             ...repository,
-            state: 'all',
+            state,
             labels
         });
         const readme = fs_1.readFileSync('./README.md');

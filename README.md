@@ -96,4 +96,4 @@ Available variables are:
 
 ## Limitations
 
-You must need **README.md** (not README) to make this work. (todo)
+You must have **README.md** (not README) to make this work. (todo)

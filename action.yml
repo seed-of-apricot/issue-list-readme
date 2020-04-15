@@ -15,6 +15,10 @@ inputs:
   labels:
     description: "comma-separated labels to filter the issues"
     required: false
+  state:
+    description: "state of the issues to filter them (open or closed)"
+    default: "all"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"
