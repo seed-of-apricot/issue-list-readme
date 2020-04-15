@@ -30,6 +30,7 @@ steps:
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       pattern: '<!-- issueTable -->' # suffixing "Demo" for this readme
       labels: 'good first issue'
+      labels: 'open'
 # add, commit and push
 ```
 
@@ -93,6 +94,7 @@ Available variables are:
 | GITHUB_TOKEN | true     | -                       | you can use \${{ secrets.GITHUB_TOKEN }}                                           |
 | pattern      | false    | "\<!-- issueTable --\>" | the identifier to inject the issue table and <br /> extract the body of each issue |
 | labels       | false    | -                       | comma-separated labels to filter issues                                            |
+| state       | false    | "all"                       | state of the issues to filter them (open or closed)                                            |
 
 ## Limitations
 
