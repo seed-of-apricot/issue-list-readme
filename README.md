@@ -25,7 +25,7 @@ steps:
   - name: checkout
     uses: actions/checkout@v2
   - name: rewriteReadme
-    uses: seed-of-apricot/issue-list-readme@v1.0.0
+    uses: seed-of-apricot/issue-list-readme@v1.1.0
     with:
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       pattern: '<!-- issueTable -->' # suffixing "Demo" for this readme
@@ -76,7 +76,7 @@ Some issue
 3. Then, write the following section into your action.
 
 ```yml
-uses: seed-of-apricot/issue-list-readme@v1.0.0
+uses: seed-of-apricot/issue-list-readme@v1.1.0
 with:
   GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 ```
