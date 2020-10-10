@@ -97,3 +97,7 @@ Available variables are:
 ## Limitations
 
 You must have **README.md** (not README) to make this work. (todo)
+
+## License
+
+MIT License. This repository uses the [typescript-action template](https://github.com/actions/typescript-action) so the original MIT license also applies.
