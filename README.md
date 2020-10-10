@@ -10,10 +10,10 @@ The issue list below...
 
 <!-- issueTableDemo -->
 
-| Title                                                                             |         Status          |                                                            Assignee                                                             | Body                                  |
-| :-------------------------------------------------------------------------------- | :---------------------: | :-----------------------------------------------------------------------------------------------------------------------------: | :------------------------------------ |
-| <a href="https://github.com/seed-of-apricot/issue-list-readme/issues/3">test2</a> |       :no_entry:        | <a href="https://github.com/seed-of-apricot"><img src="https://avatars1.githubusercontent.com/u/26666870?v=4" width="20" /></a> | test<br />hoge                        |
-| <a href="https://github.com/seed-of-apricot/issue-list-readme/issues/2">test</a>  | :eight_spoked_asterisk: | <a href="https://github.com/seed-of-apricot"><img src="https://avatars1.githubusercontent.com/u/26666870?v=4" width="20" /></a> | test<br />hoge<br />testtest<br />... |
+| Title                                                                                 |         Status          |                                                            Assignee                                                             | Body                                  |
+| :------------------------------------------------------------------------------------ | :---------------------: | :-----------------------------------------------------------------------------------------------------------------------------: | :------------------------------------ |
+| <a href="https://github.com/seed-of-apricot/issue-list-readme/issues/4">more test</a> | :eight_spoked_asterisk: |                                                                                                                                 | yay!                                  |
+| <a href="https://github.com/seed-of-apricot/issue-list-readme/issues/2">test</a>      | :eight_spoked_asterisk: | <a href="https://github.com/seed-of-apricot"><img src="https://avatars1.githubusercontent.com/u/26666870?v=4" width="20" /></a> | test<br />hoge<br />testtest<br />... |
 
 <!-- issueTableDemo -->
 
@@ -25,12 +25,14 @@ steps:
   - name: checkout
     uses: actions/checkout@v2
   - name: rewriteReadme
-    uses: seed-of-apricot/issue-list-readme@v1.0.0
+    uses: seed-of-apricot/issue-list-readme@v1.1.0
     with:
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       pattern: '<!-- issueTable -->' # suffixing "Demo" for this readme
       labels: 'good first issue'
-# add, commit and push
+      labels: 'open'
+# you need to add, commit and push here
+# otherwise the changes will not be pushed back into master
 ```
 
 ## Usage
@@ -74,7 +76,7 @@ Some issue
 3. Then, write the following section into your action.
 
 ```yml
-uses: seed-of-apricot/issue-list-readme@v1.0.0
+uses: seed-of-apricot/issue-list-readme@v1.1.0
 with:
   GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 ```
@@ -93,6 +95,7 @@ Available variables are:
 | GITHUB_TOKEN | true     | -                       | you can use \${{ secrets.GITHUB_TOKEN }}                                           |
 | pattern      | false    | "\<!-- issueTable --\>" | the identifier to inject the issue table and <br /> extract the body of each issue |
 | labels       | false    | -                       | comma-separated labels to filter issues                                            |
+| state       | false    | "all"                       | state of the issues to filter them (`"all" \| "open" \| "closed"`)                                            |
 
 ## Limitations
 
