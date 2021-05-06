@@ -30,7 +30,7 @@ steps:
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       pattern: '<!-- issueTable -->' # suffixing "Demo" for this readme
       labels: 'good first issue'
-      labels: 'open'
+      state: 'open'
 # you need to add, commit and push here
 # otherwise the changes will not be pushed back into master
 ```
